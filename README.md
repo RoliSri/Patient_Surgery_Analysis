@@ -1,6 +1,6 @@
 # Patient_Surgery_Analysis
 
-We analyzed data to find the surgery type 1 or 0 which has better survival chances for patient. I we did all three matching , stratified and weighing and we saw that weighing and stratified were almost same when it comes to balance. Matching did result is loss of data.
+We analyzed data to find the surgery type 1 or 0 which has better survival chances for patient. We did all three matching , stratified and weighing and we saw that weighing and stratified were almost same when it comes to balance. Matching did result is loss of data.
 Of those three weighting didn’t result in any data loss. Based on these analyses we would suggest that there is likely a negative effect of surgery type 1 on death, which means by taking surgery type 1  the patient is less likely to die but also note that the size/significance of the effect is likely smaller than we found.  We would also suggest that the weighting method is doing the best overall job (reducing covariate imbalance and using all observations).
 Weighing(b=0.142  t= 5.09 p < 0.001) as it is having negative effect.
 Other covariates which also impacted the surgery type in turn impacted the death counts are p< 0.001
