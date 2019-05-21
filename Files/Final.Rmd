@@ -1,5 +1,5 @@
 ---
-title: "Patient surgery Analysis"
+title: "510-Exam"
 author: "Roli Srivastava"
 date: "February 20, 2019"
 output: word_document
@@ -28,40 +28,40 @@ library(magrittr)
 
 ```{r}
 # factoring and scaling the cov for analysis
-PatientData <- read_excel("../PatientData.xlsx") #
-PatientData$severe <- factor(PatientData$severe) 
-PatientData$cognitivedecline <-  factor(PatientData$cognitivedecline)
-PatientData$depression <- factor(PatientData$depression)
-PatientData$cancer <- factor(PatientData$cancer)
-PatientData$autoimmune <- factor(PatientData$autoimmune)
-PatientData$transferedin <- factor(PatientData$transferedin)
-PatientData$sex <- factor(PatientData$sex)
-PatientData$yearseducation <- factor(PatientData$yearseducation)
-PatientData$nolifesupportorder <- factor(PatientData$nolifesupportorder)
-PatientData$insurancetype <- factor(PatientData$insurancetype)
-PatientData$resp <- factor(PatientData$resp)
-PatientData$infection <- factor(PatientData$infection)
-PatientData$trauma <- factor(PatientData$trauma)
-PatientData$race <- factor(PatientData$race)
-PatientData$age <- scale(PatientData$age)
-PatientData$bloodpressure <- scale(PatientData$bloodpressure)
-PatientData$temperature <- scale(PatientData$temperature)
-PatientData$creatinelevels <- scale(PatientData$creatinelevels)
-PatientData$sodiumlevels <- scale(PatientData$sodiumlevels)
-PatientData$urineweight <- scale(PatientData$urineweight)
-PatientData$kg <- scale(PatientData$kg)
-PatientData$income <- scale(PatientData$income)
-PatientData$surgerytype <- PatientData$surgerytype
+Exam3Q1 <- read_excel("C:/MyData-Late Fall/510-prin 2/Assignment/Exam3Q1.xlsx") #
+Exam3Q1$severe <- factor(Exam3Q1$severe) 
+Exam3Q1$cognitivedecline <-  factor(Exam3Q1$cognitivedecline)
+Exam3Q1$depression <- factor(Exam3Q1$depression)
+Exam3Q1$cancer <- factor(Exam3Q1$cancer)
+Exam3Q1$autoimmune <- factor(Exam3Q1$autoimmune)
+Exam3Q1$transferedin <- factor(Exam3Q1$transferedin)
+Exam3Q1$sex <- factor(Exam3Q1$sex)
+Exam3Q1$yearseducation <- factor(Exam3Q1$yearseducation)
+Exam3Q1$nolifesupportorder <- factor(Exam3Q1$nolifesupportorder)
+Exam3Q1$insurancetype <- factor(Exam3Q1$insurancetype)
+Exam3Q1$resp <- factor(Exam3Q1$resp)
+Exam3Q1$infection <- factor(Exam3Q1$infection)
+Exam3Q1$trauma <- factor(Exam3Q1$trauma)
+Exam3Q1$race <- factor(Exam3Q1$race)
+Exam3Q1$age <- scale(Exam3Q1$age)
+Exam3Q1$bloodpressure <- scale(Exam3Q1$bloodpressure)
+Exam3Q1$temperature <- scale(Exam3Q1$temperature)
+Exam3Q1$creatinelevels <- scale(Exam3Q1$creatinelevels)
+Exam3Q1$sodiumlevels <- scale(Exam3Q1$sodiumlevels)
+Exam3Q1$urineweight <- scale(Exam3Q1$urineweight)
+Exam3Q1$kg <- scale(Exam3Q1$kg)
+Exam3Q1$income <- scale(Exam3Q1$income)
+Exam3Q1$surgerytype <- Exam3Q1$surgerytype
 
 #build the full model (all potential IVs to see if they predict assignment):
-psmodel <- glm(surgerytype ~ age + bloodpressure + temperature + creatinelevels + sodiumlevels + urineweight  + kg + income +  severe + cognitivedecline + depression + cancer + autoimmune + transferedin + sex + yearseducation + nolifesupportorder + insurancetype +  resp + infection + trauma + race , data = PatientData, family = 'binomial')
+psmodel <- glm(surgerytype ~ age + bloodpressure + temperature + creatinelevels + sodiumlevels + urineweight  + kg + income +  severe + cognitivedecline + depression + cancer + autoimmune + transferedin + sex + yearseducation + nolifesupportorder + insurancetype +  resp + infection + trauma + race , data = Exam3Q1, family = 'binomial')
 
 summary(psmodel)
 
 #Reduced model based on the covariates which are significant
 psmodelfinal <- glm(surgerytype ~ bloodpressure + creatinelevels + sodiumlevels + urineweight  + kg + severe + 
                   cognitivedecline + depression + cancer + transferedin + nolifesupportorder + insurancetype +  resp 
-                + infection + trauma, data = PatientData, family = "binomial")
+                + infection + trauma, data = Exam3Q1, family = "binomial")
 
 summary(psmodelfinal)
 
@@ -69,7 +69,7 @@ vif(psmodelfinal)
 #no mulitcollinearity is found.
 
 #Lets make our data frame excluding any NA and missing data.
-dataready <- na.omit(PatientData)
+dataready <- na.omit(Exam3Q1)
 psf <- formula('surgerytype ~ bloodpressure + creatinelevels + sodiumlevels + urineweight  + kg + severe + 
                   cognitivedecline + depression + cancer + transferedin + nolifesupportorder + insurancetype +  resp 
                 + infection + trauma')
